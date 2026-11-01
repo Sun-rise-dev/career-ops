@@ -30,6 +30,9 @@ LICENSE    text eol=lf
 VERSION    text eol=lf
 cops       text eol=lf
 
+# cmd.exe still mishandles LF-only batch files, so these stay CRLF in the working tree.
+*.cmd text eol=crlf
+
 # Binary assets — never normalized
 *.png   binary
 *.jpg   binary
