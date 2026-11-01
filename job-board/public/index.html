@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>职位看板</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <header class="top">
+    <div>
+      <p class="eyebrow">本机看板</p>
+      <h1>职位看板</h1>
+      <p class="lead">这里是已经抓取并打过分的岗位。点按钮记下进度，关掉再打开也还在。</p>
+    </div>
+    <button type="button" id="reload" class="ghost">刷新列表</button>
+  </header>
+
+  <p id="stats" class="stats" aria-live="polite">正在读取岗位…</p>
+  <p id="toast" class="toast" role="status" hidden></p>
+
+  <section class="filters" aria-label="筛选">
+    <label>搜索
+      <input id="text" type="search" placeholder="公司、职位、城市" autocomplete="off">
+    </label>
+    <label>平台
+      <select id="platform"></select>
+    </label>
+    <label>清单
+      <select id="section"></select>
+    </label>
+    <label>进度
+      <select id="progress"></select>
+    </label>
+    <label>排序
+      <select id="sort"></select>
+    </label>
+    <label>最低分
+      <input id="min-score" type="number" min="0" max="5" step="0.1" placeholder="不限">
+    </label>
+    <label class="check">
+      <input id="show-skipped" type="checkbox">
+      显示已跳过
+    </label>
+  </section>
+
+  <main id="list"></main>
+  <p id="empty" class="empty" hidden></p>
+
+  <footer>
+    <p>岗位来自 <code>data/pipeline.md</code>。进度单独写在 <code>data/job-board-status.json</code>，只留在这台电脑上。</p>
+    <p>选「未投」会清空沟通、面试和结果。记下后面任一项时，会自动标成已投。沟通、面试、结果再点一次已选中的按钮，就改回未填。</p>
+  </footer>
+  <script type="module" src="/app.js"></script>
+  <noscript><p>需要打开浏览器的 JavaScript 才能使用这块看板。</p></noscript>
+</body>
+</html>

@@ -929,6 +929,7 @@ function printHuman(result) {
 
 export async function discoverFundedCompanies(opts = {}) {
   const months = opts.months || DEFAULT_MONTHS;
+  const now = opts.now instanceof Date ? opts.now : new Date();
   const sources = (opts.sources || DEFAULT_SOURCES).map(normalizeSourceName);
   const diagnostics = [...new Set(sources)].map(diagnostic);
   const hits = Array.isArray(opts.discoveryItems)
@@ -938,11 +939,12 @@ export async function discoverFundedCompanies(opts = {}) {
     months,
     sort: opts.sort || DEFAULT_SORT,
     limit: opts.limit || DEFAULT_LIMIT,
+    now,
     diagnostics,
   });
 
   return {
-    generated_at: isoDate(),
+    generated_at: isoDate(now),
     window_months: months,
     sort: opts.sort || DEFAULT_SORT,
     dry_run: Boolean(opts.dryRun),

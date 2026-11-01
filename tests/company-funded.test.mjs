@@ -357,6 +357,9 @@ try {
       sources: ['techcrunch'],
       months: 3,
       limit: 5,
+      // The fixture is dated 15 Jul 2026. Without a fixed clock, a 3-month
+      // window drops it as soon as the wall clock passes mid-October 2026.
+      now: new Date('2026-07-20T00:00:00Z'),
     });
     if (
       result.companies[0]?.company === 'Acme' &&
