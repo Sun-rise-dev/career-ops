@@ -1,0 +1,17 @@
+---
+description: 招聘网站登录态浏览必须过门禁，禁止代投，防止封号
+alwaysApply: true
+---
+
+# 招聘网站浏览器安全（防封号）
+
+在 BOSS 直聘、拉勾、猎聘、智联等**已登录**站点开详情前，先跑门禁，不要靠记忆数秒：
+
+```text
+node config/job-board-browse-gate.mjs check <platform>
+node config/job-board-browse-gate.mjs open <platform>
+```
+
+只有 `*** ALLOW ***` 才能开**这一条**详情。`<platform>`：`boss` / `zhilian` / `liepin` / `lagou`。额度**按站分开**（默认各 25/天）。换词用 `search <platform>`。验证码用 `risk <platform> captcha` 并停该站。`status` 可看各站余量。
+
+数字以 `config/profile.yml` → `job_board_browse` 为准。只读 JD、打分、写 `data/pipeline.md`。不要代投。完整步骤：`.agents/skills/boss-browse-safety/SKILL.md`。
